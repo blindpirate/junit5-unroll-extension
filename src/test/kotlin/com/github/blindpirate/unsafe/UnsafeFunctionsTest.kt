@@ -15,7 +15,7 @@ import java.util.stream.Stream
 class UnsafeFunctionsTest {
     @Test
     fun `can retrieve where function`() {
-        val params = extractArguments("${javaClass.packageName}.TestClass", "testMethod")
+        val params = extractArguments("${javaClass.`package`.name}.TestClass", "testMethod")
         verifyParamData(params)
     }
 
@@ -45,7 +45,7 @@ class UnsafeFunctionsTest {
     @Test
     @SystemProperty(name = "max.anonymous.search.num", value = "11")
     fun `can change system property to control retry count`() {
-        val params = extractArguments("${javaClass.packageName}.TestClass", "anotherTestMethod")
+        val params = extractArguments("${javaClass.`package`.name}.TestClass", "anotherTestMethod")
         verifyParamData(params)
     }
 }

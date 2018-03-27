@@ -24,5 +24,3 @@ internal fun getTestClassName(context: ExtensionContext?): String = context!!.te
 
 internal fun getTestMethodName(context: ExtensionContext?): String = context!!.testMethod.map(Method::getName).orElseThrow(::unexpectedResult)
 
-
-
