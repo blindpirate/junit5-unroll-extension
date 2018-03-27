@@ -10,11 +10,16 @@ repositories {
     mavenCentral()
 }
 
+val jUnitPlatformVersion = "5.1.0"
+val kotlinVersion = "1.2.31"
+
 dependencies {
-    compile("org.junit.jupiter:junit-jupiter-api:5.1.0")
-    compile("org.jetbrains.kotlin:kotlin-stdlib:1.2.31")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
-    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.2.31")
+    compile("org.junit.jupiter:junit-jupiter-api:$jUnitPlatformVersion")
+    compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    testCompile("org.junit.jupiter:junit-jupiter-params:$jUnitPlatformVersion")
+    testCompile("io.github.glytching:junit-extensions:1.1.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitPlatformVersion")
+    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 }
 
 

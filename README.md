@@ -28,7 +28,7 @@ max number of {0} and {1} is {2}(int, int, int, com.github.blindpirate.Param) âœ
 
 ## How to use
 
-- Currently it's still under development so it hasn't been uploaded to maven central yet.
+- Currently it's still under development so it has not been uploaded to maven central yet.
 - Add `@Unroll` to your test method. Note `@Unroll` can't be used together with `@Test` or `@ParamerizedTest`.
 - Write the parameters in the last parameter as shown above.
 

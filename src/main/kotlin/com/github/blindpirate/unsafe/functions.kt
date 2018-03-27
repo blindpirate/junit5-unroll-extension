@@ -1,29 +1,41 @@
 package com.github.blindpirate.unsafe
 
 import com.github.blindpirate.Param
-import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ParameterResolutionException
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 import java.lang.reflect.ParameterizedType
+import java.util.stream.Collectors
+import java.util.stream.IntStream
 import java.util.stream.Stream
 
-internal fun extractArguments(context: ExtensionContext): Stream<out Array<Any>> = determineParams(context).toStream()
+private const val MAX_SEARCH_SYSTEM_PROPERTY = "max.anonymous.search.num"
 
-private fun determineParams(context: ExtensionContext): Param {
-    val testClass = context.testClass.orElseThrow(::unexpectedResult)
-    val testMethodName = context.testMethod.orElseThrow(::unexpectedResult).name
+private const val MAX_ANONYMOUS_SEARCH_NUM = 10
 
-    (1..MAX_ANONYMOUS_NUM).forEach {
+private val FUNCTION1: Array<Class<*>> = arrayOf(Param::class.java, Unit::class.java)
+
+internal fun extractArguments(testClassName: String, testMethodName: String): Stream<out Array<Any>> {
+    val prefix = "$testClassName\$$testMethodName\$"
+    (1..determineRetryCount()).forEach {
         try {
-            val klass = Class.forName("${testClass.name}\$$testMethodName\$$it")
+            val klass = Class.forName("$prefix$it")
             if (isTargetClass(klass)) {
-                return getParam(klass)
+                return getParam(klass).toStream()
             }
         } catch (e: ClassNotFoundException) {
         }
     }
-    throw ParameterResolutionException("Can't find closure after trying $MAX_ANONYMOUS_NUM times")
+    throw ParameterResolutionException("Can't find param after search $MAX_ANONYMOUS_SEARCH_NUM times. Tried:\n${createSearchedClassString(prefix)}")
+}
+
+private fun createSearchedClassString(prefix: String): String {
+    return IntStream.range(1, determineRetryCount() + 1).mapToObj({ "$prefix$it" }).collect(Collectors.joining("\n"))
+}
+
+private fun determineRetryCount(): Int {
+    return System.getProperty(MAX_SEARCH_SYSTEM_PROPERTY)?.toInt()
+            ?: MAX_ANONYMOUS_SEARCH_NUM
 }
 
 private fun getParam(whereFunctionClass: Class<*>): Param {
@@ -40,11 +52,6 @@ private fun isTargetClass(klass: Class<*>): Boolean {
     return klass.fields.any { isInstanceField(klass, it) } && implementsFunctionAToUnit(klass)
 }
 
-private const val MAX_ANONYMOUS_NUM = 10
-
-private fun unexpectedResult(): IllegalArgumentException {
-    return IllegalArgumentException()
-}
 
 private fun isInstanceField(klass: Class<*>, field: Field): Boolean = field.name == "INSTANCE" && Modifier.isStatic(field.modifiers) && field.type == klass
 
@@ -53,5 +60,3 @@ private fun implementsFunctionAToUnit(klass: Class<*>): Boolean {
             && klass.genericInterfaces[0] is ParameterizedType
             && FUNCTION1.contentEquals((klass.genericInterfaces[0] as ParameterizedType).actualTypeArguments)
 }
-
-private val FUNCTION1: Array<Class<*>> = arrayOf(Param::class.java, Unit::class.java)
