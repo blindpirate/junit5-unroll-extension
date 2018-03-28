@@ -1,4 +1,4 @@
-package com.github.blindpirate
+package com.github.blindpirate.junit.extension
 
 import org.junit.jupiter.api.Test
 

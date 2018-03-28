@@ -1,0 +1,14 @@
+language: java
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+env:
+  global:
+    - JAVA_OPTS=-Xmx1024m -XX:MaxPermSize=256m
+jdk:
+  - oraclejdk8
+script: ./gradlew check --info --stacktrace --max-workers=1
+after_success:
+  - ./gradlew jacocoTestReport coveralls
+  - free -mt

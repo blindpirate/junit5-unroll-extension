@@ -1,4 +1,4 @@
-package com.github.blindpirate
+package com.github.blindpirate.junit.extension
 
 class UnrollTestNameFormatter(private val template: String) {
     fun format(invocationIndex: Int, arguments: Array<out Any>): String {

@@ -1,4 +1,4 @@
-package com.github.blindpirate
+package com.github.blindpirate.junit.extension
 
 import io.github.glytching.junit.extension.folder.TemporaryFolder
 import io.github.glytching.junit.extension.folder.TemporaryFolderExtension
@@ -60,8 +60,8 @@ tasks.withType<Test>().all {
 
             import java.lang.Math
             import com.github.blindpirate.Param
-            import com.github.blindpirate.where
-            import com.github.blindpirate.Unroll
+            import com.github.blindpirate.junit.extension.where
+            import com.github.blindpirate.junit.extension.Unroll
 
             class Math {
                 @Unroll

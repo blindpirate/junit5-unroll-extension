@@ -1,6 +1,6 @@
-package com.github.blindpirate.unsafe
+package com.github.blindpirate.junit.extension.unsafe
 
-import com.github.blindpirate.Param
+import com.github.blindpirate.junit.extension.Param
 import org.junit.jupiter.api.extension.ParameterResolutionException
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
@@ -26,7 +26,7 @@ internal fun extractArguments(testClassName: String, testMethodName: String): St
         } catch (e: ClassNotFoundException) {
         }
     }
-    throw ParameterResolutionException("Can't find param after search $MAX_ANONYMOUS_SEARCH_NUM times. Tried:\n${createSearchedClassString(prefix)}")
+    throw ParameterResolutionException("Can't find param after search ${MAX_ANONYMOUS_SEARCH_NUM} times. Tried:\n${createSearchedClassString(prefix)}")
 }
 
 private fun createSearchedClassString(prefix: String): String {

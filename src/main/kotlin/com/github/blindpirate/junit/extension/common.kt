@@ -1,4 +1,4 @@
-package com.github.blindpirate
+package com.github.blindpirate.junit.extension
 
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils.findAnnotation
@@ -6,7 +6,7 @@ import java.lang.reflect.Method
 
 const val BUG_WARNING = "BUG! Please report to maintainer via https://"
 
-internal fun lastParameterIsParam(context: ExtensionContext): Boolean = context.testMethod.get().parameterTypes.last().kotlin == Param::class
+internal fun lastParameterIsParam(context: ExtensionContext): Boolean = context.testMethod.map { it.parameterTypes.last().kotlin == Param::class }.orElse(false)
 
 internal fun determineTestNameTemplate(context: ExtensionContext): String {
     val testMethod = context.testMethod.get()

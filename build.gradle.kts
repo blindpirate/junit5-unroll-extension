@@ -21,6 +21,7 @@ java.sourceSets {
 
 val jUnitPlatformVersion = "5.1.0"
 val kotlinVersion = "1.2.31"
+val jUnitLauncherVersion = "1.1.0"
 
 configurations.getByName("integrationTestCompile").extendsFrom(configurations.testCompile)
 configurations.getByName("integrationTestRuntime").extendsFrom(configurations.testRuntime)
@@ -33,6 +34,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitPlatformVersion")
     testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 
+    "integrationTestCompile"("org.junit.platform:junit-platform-launcher:$jUnitLauncherVersion")
     "integrationTestCompile"(gradleTestKit())
     "integrationTestCompile"(java.sourceSets["main"].output)
     "integrationTestCompile"(java.sourceSets["test"].output)

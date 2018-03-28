@@ -1,6 +1,6 @@
-package com.github.blindpirate
+package com.github.blindpirate.junit.extension
 
-import com.github.blindpirate.unsafe.extractArguments
+import com.github.blindpirate.junit.extension.unsafe.extractArguments
 import org.junit.jupiter.api.extension.*
 import java.util.stream.Stream
 
