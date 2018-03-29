@@ -29,7 +29,7 @@ fun runTest(testClass: Class<*>, testMethod: String = ""): IntegrationTestExecut
 
     launcher.registerTestExecutionListeners(listener)
     launcher.execute(LauncherDiscoveryRequestBuilder.request()
-            .selectors(determineSelectors(testClass,testMethod))
+            .selectors(determineSelectors(testClass, testMethod))
             .build())
     return listener
 }

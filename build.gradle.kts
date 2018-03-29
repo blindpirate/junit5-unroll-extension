@@ -5,11 +5,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
+    id("jacoco")
 }
 
 repositories {
     mavenCentral()
+    jcenter()
 }
+
+configurations.create("ktlint")
 
 java.sourceSets {
     "integrationTest" {
@@ -27,6 +31,8 @@ configurations.getByName("integrationTestCompile").extendsFrom(configurations.te
 configurations.getByName("integrationTestRuntime").extendsFrom(configurations.testRuntime)
 
 dependencies {
+    "ktlint"("com.github.shyiko:ktlint:0.20.0")
+
     compile("org.junit.jupiter:junit-jupiter-api:$jUnitPlatformVersion")
     compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     testCompile("org.junit.jupiter:junit-jupiter-params:$jUnitPlatformVersion")
@@ -52,6 +58,13 @@ tasks.create("integrationTest", Test::class.java) {
     systemProperty("unroll.extension.lib.jar.path", "${project.buildDir.absolutePath}/libs/${project.name}.jar")
 }
 
+tasks.create("ktlint", JavaExec::class.java) {
+    tasks.getByName("check").dependsOn(this)
+    classpath = configurations.getByName("ktlint")
+    main = "com.github.shyiko.ktlint.Main"
+    args("src/main/**/*.kt")
+}
+
 
 tasks.withType<KotlinCompile>().all {
     kotlinOptions {
@@ -63,3 +76,15 @@ tasks.withType<Test>().all {
     tasks.getByName("check").dependsOn(this)
     useJUnitPlatform()
 }
+
+tasks.create("jacoco", JacocoReport::class.java) {
+    dependsOn("test")
+    reports {
+        html.isEnabled = true
+    }
+
+    classDirectories = files("$buildDir/classes/kotlin/main")
+    sourceDirectories = files("src/main/kotlin")
+    executionData = files("$buildDir/jacoco/test.exec")
+}
+

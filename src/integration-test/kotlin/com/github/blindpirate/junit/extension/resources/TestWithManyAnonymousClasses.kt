@@ -48,7 +48,6 @@ class TestWithManyAnonymousClasses(testReporter: TestReporter) {
         arg10.invoke()
         arg11.invoke()
     }
-
 }
 
 private fun f() {

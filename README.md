@@ -1,6 +1,10 @@
 # JUnit 5 Unroll Extension for Kotlin
 
 
+[![Build Status](https://travis-ci.org/blindpirate/junit5-unroll-extension.svg?branch=master)](https://travis-ci.org/blindpirate/junit5-unroll-extension)
+[![Apache License 2](https://img.shields.io/badge/license-APL2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+
 JUnit 5 Unroll Extension is a JUnit 5 extension which supports parameterized tests in kotlin. TL;DR:
 
 ```

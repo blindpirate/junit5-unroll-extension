@@ -115,7 +115,7 @@ fun verifyNotInnerClass(klass: Class<*>) {
 private fun isInstanceField(klass: Class<*>, field: Field): Boolean = field.name == "INSTANCE" && Modifier.isStatic(field.modifiers) && field.type == klass
 
 private fun implementsFunctionAToUnit(klass: Class<*>): Boolean {
-    return klass.genericInterfaces.isNotEmpty()
-            && klass.genericInterfaces[0] is ParameterizedType
-            && FUNCTION1.contentEquals((klass.genericInterfaces[0] as ParameterizedType).actualTypeArguments)
+    return klass.genericInterfaces.isNotEmpty() &&
+            klass.genericInterfaces[0] is ParameterizedType &&
+            FUNCTION1.contentEquals((klass.genericInterfaces[0] as ParameterizedType).actualTypeArguments)
 }

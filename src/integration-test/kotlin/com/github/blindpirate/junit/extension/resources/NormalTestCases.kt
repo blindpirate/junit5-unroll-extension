@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.TestReporter
 import java.math.BigDecimal
 
-
 @Suppress("UNUSED_PARAMETER")
 class NormalTestCases(private val testReporter: TestReporter) {
     @Unroll
@@ -59,7 +58,6 @@ class NormalTestCases(private val testReporter: TestReporter) {
         Assertions.assertTrue(objectArg.javaClass in listOf(Sub1::class.java, Sub2::class.java))
     }
 }
-
 
 interface Base
 

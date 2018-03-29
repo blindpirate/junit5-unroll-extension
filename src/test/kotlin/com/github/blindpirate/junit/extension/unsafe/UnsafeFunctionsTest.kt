@@ -50,7 +50,6 @@ class UnsafeFunctionsTest {
     }
 }
 
-
 class `TestClass$testMethod$2` private constructor() : Function1<Param, Unit> {
     companion object {
         @JvmField
@@ -94,4 +93,3 @@ private fun verifyParamData(arguments: Stream<out Array<Any>>) {
     assertTrue(params[1][0] is Param)
     assertTrue(params[1].sliceArray(1..5).contentEquals(arrayOf("11", 12, 13L, listOf(14), mapOf(15 to 16))))
 }
-

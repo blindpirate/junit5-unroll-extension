@@ -53,7 +53,6 @@ tasks.withType<Test>().all {
 }
         """.trimIndent())
 
-
         temporaryFolder!!.createDirectory("src/test/kotlin/foo")
         temporaryFolder!!.createFile("src/test/kotlin/foo/Math.kt").writeText("""
             package foo

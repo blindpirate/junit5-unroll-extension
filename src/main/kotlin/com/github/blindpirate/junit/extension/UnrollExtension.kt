@@ -1,7 +1,12 @@
 package com.github.blindpirate.junit.extension
 
 import com.github.blindpirate.junit.extension.unsafe.extractArguments
-import org.junit.jupiter.api.extension.*
+import org.junit.jupiter.api.extension.Extension
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.api.extension.ParameterContext
+import org.junit.jupiter.api.extension.ParameterResolver
+import org.junit.jupiter.api.extension.TestTemplateInvocationContext
+import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider
 import java.util.stream.Stream
 
 class UnrollExtension : TestTemplateInvocationContextProvider {
