@@ -8,8 +8,19 @@ class UnrollExtension : TestTemplateInvocationContextProvider {
     override fun supportsTestTemplate(context: ExtensionContext?): Boolean = lastParameterIsParam(context!!)
 
     override fun provideTestTemplateInvocationContexts(context: ExtensionContext?): Stream<TestTemplateInvocationContext> {
-        return extractArguments(getTestClassName(context), getTestMethodName(context)).map { arguments ->
-            UnrollTestTemplateInvocationContext(arguments, determineTestNameTemplate(context!!))
+        return extractArguments(getTestClassName(context!!), getTestMethodName(context)).map { arguments ->
+            verifyArgumentNumberMatch(arguments!!, context)
+            UnrollTestTemplateInvocationContext(arguments, determineTestNameTemplate(context))
+        }
+    }
+
+    private fun verifyArgumentNumberMatch(arguments: Array<Any>, context: ExtensionContext) {
+        val expectedCount = getTestMethodParameterCount(context)
+        if (arguments.size != expectedCount) {
+            throw IllegalArgumentException("""Wow, seems your arguments doesn't match the parameters declared in: ${getTestMethodName(context)}()
+                |expected: ${expectedCount - 1}
+                |actual: ${arguments.size - 1}
+            """.trimMargin())
         }
     }
 }

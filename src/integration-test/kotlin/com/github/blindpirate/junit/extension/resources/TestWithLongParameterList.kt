@@ -1,12 +1,14 @@
-package com.github.blindpirate.junit.extension.testcases
+package com.github.blindpirate.junit.extension.resources
 
 import com.github.blindpirate.junit.extension.Param
 import com.github.blindpirate.junit.extension.Unroll
 import com.github.blindpirate.junit.extension.where
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.TestReporter
 
 class TestWithLongParameterList(private val testReporter: TestReporter) {
     @Unroll
+    @DisplayName("can apply a very long parameter list")
     fun `{0}_{1}_{2}_{3}_{4}_{5}_{6}_{7}_{8}_{9}`(
             arg0: String, arg1: String, arg2: String, arg3: String, arg4: String,
             arg5: String, arg6: String, arg7: String, arg8: String, arg9: String, param: Param = where {

@@ -18,9 +18,12 @@ internal fun determineTestNameTemplate(context: ExtensionContext): String {
     }
 }
 
+
 private fun unexpectedResult(): IllegalArgumentException = IllegalArgumentException(BUG_WARNING)
 
-internal fun getTestClassName(context: ExtensionContext?): String = context!!.testClass.map(Class<*>::getName).orElseThrow(::unexpectedResult)
+internal fun getTestClassName(context: ExtensionContext): String = context.testClass.map(Class<*>::getName).orElseThrow(::unexpectedResult)
 
-internal fun getTestMethodName(context: ExtensionContext?): String = context!!.testMethod.map(Method::getName).orElseThrow(::unexpectedResult)
+internal fun getTestMethodName(context: ExtensionContext): String = context.testMethod.map(Method::getName).orElseThrow(::unexpectedResult)
+
+internal fun getTestMethodParameterCount(context: ExtensionContext): Int = context.testMethod.map(Method::getParameterCount).orElseThrow(::unexpectedResult)
 

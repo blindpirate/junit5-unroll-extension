@@ -4,6 +4,7 @@ import org.junit.jupiter.api.TestTemplate
 import org.junit.jupiter.api.extension.ExtendWith
 import java.util.stream.Stream
 
+@Suppress("UNUSED_PARAMETER")
 fun where(init: Param.() -> Unit): Param {
     return Param()
 }
@@ -27,6 +28,9 @@ class Param {
         arguments.last().add(value)
         return this@Param
     }
+
+    val isEmpty: Boolean
+        get() = arguments.size == 0
 
     internal fun toStream(): Stream<out Array<Any>> {
         return arguments.stream().map(this::addThisToDataRow)

@@ -47,6 +47,8 @@ tasks.create("integrationTest", Test::class.java) {
     testClassesDirs = java.sourceSets["integrationTest"].output.classesDirs
     classpath = java.sourceSets["integrationTest"].runtimeClasspath
 
+    exclude("**/resources/**")
+
     systemProperty("unroll.extension.lib.jar.path", "${project.buildDir.absolutePath}/libs/${project.name}.jar")
 }
 
@@ -58,7 +60,6 @@ tasks.withType<KotlinCompile>().all {
 }
 
 tasks.withType<Test>().all {
+    tasks.getByName("check").dependsOn(this)
     useJUnitPlatform()
 }
-
-

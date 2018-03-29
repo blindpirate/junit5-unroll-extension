@@ -29,7 +29,7 @@ class UnsafeFunctionsTest {
         val prefix = "$className\$$methodName\$"
 
         assertEquals(exception.message, """
-            Can't find param after search 10 times. Tried:
+            Can't find param after searching 10 times. Tried:
             ${prefix}1
             ${prefix}2
             ${prefix}3
