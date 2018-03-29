@@ -3,13 +3,14 @@ package com.github.blindpirate.junit.extension.resources
 import com.github.blindpirate.junit.extension.Param
 import com.github.blindpirate.junit.extension.Unroll
 import com.github.blindpirate.junit.extension.where
-import org.gradle.internal.impldep.junit.framework.Assert.assertEquals
-import org.gradle.internal.impldep.junit.framework.Assert.assertTrue
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.TestReporter
 import java.math.BigDecimal
 
 
+@Suppress("UNUSED_PARAMETER")
 class NormalTestCases(private val testReporter: TestReporter) {
     @Unroll
     fun `can have only 1 row of data`(

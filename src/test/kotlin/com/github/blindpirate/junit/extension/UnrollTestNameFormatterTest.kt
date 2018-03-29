@@ -2,6 +2,7 @@ package com.github.blindpirate.junit.extension
 
 import org.junit.jupiter.api.Test
 
+@Suppress("UNUSED_PARAMETER", "UNCHECKED_CAST")
 class UnrollTestNameFormatterTest {
     @Test
     fun `can replace {number}`() {

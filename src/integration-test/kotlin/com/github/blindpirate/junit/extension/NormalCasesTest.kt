@@ -31,7 +31,7 @@ class NormalCasesTest {
     }
 
     @Test
-    fun `can apply a very long parameter list`(testInfo: TestInfo) {
+    fun `can apply a very long parameter list`() {
         val listener = runTest(TestWithLongParameterList::class.java)
         assertContainsTests(listener, "a_b_c_e_f_g_h_i_j_k", "l_m_n_o_p_q_r_s_t_u")
         assertEquals(listener.outputs, listOf("a_b_c_e_f_g_h_i_j_k", "l_m_n_o_p_q_r_s_t_u"))

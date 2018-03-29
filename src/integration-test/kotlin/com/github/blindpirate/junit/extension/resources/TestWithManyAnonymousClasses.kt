@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestReporter
 
 typealias UnitUnit = () -> Unit
 
+@Suppress("UNUSED_PARAMETER")
 class TestWithManyAnonymousClasses(testReporter: TestReporter) {
     companion object {
         @JvmField

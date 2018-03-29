@@ -4,7 +4,7 @@ import com.github.blindpirate.junit.extension.Param
 import com.github.blindpirate.junit.extension.Unroll
 import com.github.blindpirate.junit.extension.where
 
-@SuppressWarnings("UNUSED_PARAMETER")
+@Suppress("UNUSED_PARAMETER", "UNUSED_EXPRESSION")
 class AbnormalTestCases {
     @Unroll
     fun `throws exception when parameter number doesn't match`(

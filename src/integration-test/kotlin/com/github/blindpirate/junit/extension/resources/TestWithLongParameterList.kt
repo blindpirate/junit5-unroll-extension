@@ -6,6 +6,7 @@ import com.github.blindpirate.junit.extension.where
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.TestReporter
 
+@Suppress("UNUSED_PARAMETER")
 class TestWithLongParameterList(private val testReporter: TestReporter) {
     @Unroll
     @DisplayName("can apply a very long parameter list")
