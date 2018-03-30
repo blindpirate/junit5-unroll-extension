@@ -4,7 +4,7 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils.findAnnotation
 import java.lang.reflect.Method
 
-const val BUG_WARNING = "BUG! Please report to maintainer via https://"
+const val BUG_WARNING = "BUG! Please report to maintainer via https://github.com/blindpirate/junit5-unroll-extension/issues"
 
 internal fun lastParameterIsParam(context: ExtensionContext): Boolean = context.testMethod.map { it.parameterTypes.last().kotlin == Param::class }.orElse(false)
 
