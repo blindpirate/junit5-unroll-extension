@@ -83,7 +83,7 @@ private fun isTargetClass(klass: Class<*>): Boolean {
 }
 
 fun verifyNotInnerClass(klass: Class<*>) {
-    if (implementsFunctionAToUnit(klass) && klass.fields.any { it.name == "this$0" }) {
+    if (implementsFunctionAToUnit(klass) && klass.declaredFields.any { it.name == "this$0" }) {
         throw IllegalArgumentException("""Your where function references enclosing instance, which is not supported:
             |This is supported:
             |

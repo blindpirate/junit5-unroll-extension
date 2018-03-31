@@ -15,18 +15,16 @@ class AbnormalCasesTest {
     @Test
     fun `throws exception when parameter number doesn't match`(testInfo: TestInfo) {
         val listener = runTest(AbnormalTestCases::class.java, testInfo.testMethod.get().name)
-        assertFailedTest(listener, { identifier, result ->
-            identifier.displayName == testInfo.displayName &&
-                    isIllegalArgumentExceptionContaining(result, "expected: 2\nactual: 3")
+        assertFailedTest(listener, { _, result ->
+            isIllegalArgumentExceptionContaining(result, "expected: 2\nactual: 3")
         })
     }
 
     @Test
     fun `throws exception when parameter type doesn't match`(testInfo: TestInfo) {
         val listener = runTest(AbnormalTestCases::class.java, testInfo.testMethod.get().name)
-        assertFailedTest(listener, { identifier, result ->
-            identifier.displayName == testInfo.displayName &&
-                    resultContainsMessage(result, "No ParameterResolver registered ")
+        assertFailedTest(listener, { _, result ->
+            resultContainsMessage(result, "but a value assignment compatible with [int] is required.")
         })
     }
 
@@ -34,25 +32,23 @@ class AbnormalCasesTest {
     fun `throws exception when anonymous class can't be found`() {
         val listener = runTest(TestWithManyAnonymousClasses::class.java)
         assertFailedTest(listener, { identifier, result ->
-            identifier.displayName == "test" && resultContainsMessage(result, "Can't find param after searching")
+            identifier.displayName.contains("test(") && resultContainsMessage(result, "Can't find param after searching")
         })
     }
 
     @Test
     fun `throws exception when where function references outer instance`(testInfo: TestInfo) {
         val listener = runTest(AbnormalTestCases::class.java, testInfo.testMethod.get().name)
-        assertFailedTest(listener, { identifier, result ->
-            identifier.displayName == testInfo.displayName &&
-                    isIllegalArgumentExceptionContaining(result, "Your where function references enclosing instance")
+        assertFailedTest(listener, { _, result ->
+            isIllegalArgumentExceptionContaining(result, "Your where function references enclosing instance")
         })
     }
 
     @Test
     fun `throws exception when only 1 column of data`(testInfo: TestInfo) {
         val listener = runTest(AbnormalTestCases::class.java, testInfo.testMethod.get().name)
-        assertFailedTest(listener, { identifier, result ->
-            identifier.displayName == testInfo.displayName &&
-                    isIllegalArgumentExceptionContaining(result, "Please at least specify three parameters")
+        assertFailedTest(listener, { _, result ->
+            isIllegalArgumentExceptionContaining(result, "Please at least specify three parameters")
         })
     }
 
@@ -65,9 +61,8 @@ class AbnormalCasesTest {
     }
 
     private fun assertFailedTest(listener: IntegrationTestExecutionListener, failedTestAssertion: TestAssertion) {
-        assert(!listener.testCases.isEmpty())
-        listener.testCases.any { entry ->
+        assert(listener.testCases.any { entry ->
             failedTestAssertion.invoke(entry.key, entry.value) && entry.value.status == TestExecutionResult.Status.FAILED
-        }
+        })
     }
 }
