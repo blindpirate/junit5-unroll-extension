@@ -36,9 +36,32 @@ max number of {0} and {1} is {2}(int, int, int, com.github.blindpirate.Param) âœ
 
 ## How to use
 
-- Currently it's still under development so it has not been uploaded to maven central yet.
+Maven:
+
+```
+<dependency>
+    <groupId>com.github.blindpirate</groupId>
+    <artifactId>junit5-unroll-extension</artifactId>
+    <version>0.1.1</version>
+    <scope>test</scope>
+</dependency>
+```
+
+Gradle:
+
+```
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'com.github.blindpirate:junit5-unroll-extension:0.1.1'
+}
+```
+
+- Add configuration to your `pom.xml` or `build.gradle`.
 - Add `@Unroll` to your test method. Note `@Unroll` can't be used together with `@Test` or `@ParamerizedTest`.
-- Write the parameters in the last parameter as shown above.
+- Put the arguments in the `where` function as shown above.
 
 ## Why Unroll Extension
 
