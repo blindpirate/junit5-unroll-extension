@@ -2,11 +2,19 @@ import org.gradle.kotlin.dsl.`kotlin-dsl`
 import org.gradle.kotlin.dsl.repositories
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.novoda.gradle.release.PublishExtension
 
 plugins {
     `kotlin-dsl`
     id("jacoco")
 }
+
+buildscript {
+    repositories { jcenter() }
+    dependencies { classpath("com.novoda:bintray-release:0.8.1") }
+}
+
+apply(mapOf("plugin" to "com.novoda.bintray-release"))
 
 repositories {
     mavenCentral()
@@ -88,3 +96,11 @@ tasks.create("jacoco", JacocoReport::class.java) {
     executionData = files("$buildDir/jacoco/test.exec")
 }
 
+configure<PublishExtension> {
+    userOrg = "blindpirate"
+    repoName = "com.github.blindpirate"
+    groupId = "com.github.blindpirate"
+    artifactId = "junit5-unroll-extension"
+    publishVersion = "0.1"
+    desc = "JUnit 5 Unroll Extension for Kotlin"
+}

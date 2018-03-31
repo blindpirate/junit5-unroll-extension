@@ -1,6 +1,6 @@
-package com.github.blindpirate.junit.extension.unsafe
+package com.github.blindpirate.junit.extension.unroll.unsafe
 
-import com.github.blindpirate.junit.extension.Param
+import com.github.blindpirate.junit.extension.unroll.Param
 import org.junit.jupiter.api.extension.ParameterResolutionException
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier

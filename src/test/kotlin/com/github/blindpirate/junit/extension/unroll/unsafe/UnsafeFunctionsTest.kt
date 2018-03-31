@@ -1,6 +1,6 @@
-package com.github.blindpirate.junit.extension.unsafe
+package com.github.blindpirate.junit.extension.unroll.unsafe
 
-import com.github.blindpirate.junit.extension.Param
+import com.github.blindpirate.junit.extension.unroll.Param
 import io.github.glytching.junit.extension.system.SystemProperty
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue

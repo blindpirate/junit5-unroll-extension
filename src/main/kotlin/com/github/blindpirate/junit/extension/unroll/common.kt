@@ -1,4 +1,4 @@
-package com.github.blindpirate.junit.extension
+package com.github.blindpirate.junit.extension.unroll
 
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils.findAnnotation

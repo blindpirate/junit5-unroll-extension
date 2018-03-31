@@ -1,6 +1,6 @@
-package com.github.blindpirate.junit.extension
+package com.github.blindpirate.junit.extension.unroll
 
-import com.github.blindpirate.junit.extension.unsafe.extractArguments
+import com.github.blindpirate.junit.extension.unroll.unsafe.extractArguments
 import org.junit.jupiter.api.extension.Extension
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ParameterContext

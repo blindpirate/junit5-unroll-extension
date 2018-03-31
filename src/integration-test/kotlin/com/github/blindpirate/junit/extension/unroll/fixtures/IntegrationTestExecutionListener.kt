@@ -1,4 +1,4 @@
-package com.github.blindpirate.junit.extension.fixtures
+package com.github.blindpirate.junit.extension.unroll.fixtures
 
 import org.junit.platform.engine.DiscoverySelector
 import org.junit.platform.engine.TestExecutionResult

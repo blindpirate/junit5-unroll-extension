@@ -1,10 +1,10 @@
 package com.github.blindpirate.junit.extension
 
-import com.github.blindpirate.junit.extension.fixtures.IntegrationTestExecutionListener
-import com.github.blindpirate.junit.extension.fixtures.runTest
-import com.github.blindpirate.junit.extension.resources.NormalTestCases
-import com.github.blindpirate.junit.extension.resources.TestWithLongParameterList
-import com.github.blindpirate.junit.extension.resources.TestWithManyAnonymousClasses
+import com.github.blindpirate.junit.extension.unroll.fixtures.IntegrationTestExecutionListener
+import com.github.blindpirate.junit.extension.unroll.fixtures.runTest
+import com.github.blindpirate.junit.extension.unroll.resources.NormalTestCases
+import com.github.blindpirate.junit.extension.unroll.resources.TestWithLongParameterList
+import com.github.blindpirate.junit.extension.unroll.resources.TestWithManyAnonymousClasses
 import io.github.glytching.junit.extension.system.SystemProperty
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

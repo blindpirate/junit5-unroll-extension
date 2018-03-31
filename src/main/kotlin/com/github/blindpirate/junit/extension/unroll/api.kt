@@ -1,4 +1,4 @@
-package com.github.blindpirate.junit.extension
+package com.github.blindpirate.junit.extension.unroll
 
 import org.junit.jupiter.api.TestTemplate
 import org.junit.jupiter.api.extension.ExtendWith

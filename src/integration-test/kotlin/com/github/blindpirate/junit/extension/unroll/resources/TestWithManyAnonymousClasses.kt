@@ -1,8 +1,8 @@
-package com.github.blindpirate.junit.extension.resources
+package com.github.blindpirate.junit.extension.unroll.resources
 
-import com.github.blindpirate.junit.extension.Param
-import com.github.blindpirate.junit.extension.Unroll
-import com.github.blindpirate.junit.extension.where
+import com.github.blindpirate.junit.extension.unroll.Param
+import com.github.blindpirate.junit.extension.unroll.Unroll
+import com.github.blindpirate.junit.extension.unroll.where
 import org.junit.jupiter.api.TestReporter
 
 typealias UnitUnit = () -> Unit

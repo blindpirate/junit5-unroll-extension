@@ -58,9 +58,9 @@ tasks.withType<Test>().all {
             package foo
 
             import java.lang.Math
-            import com.github.blindpirate.junit.extension.Param
-            import com.github.blindpirate.junit.extension.where
-            import com.github.blindpirate.junit.extension.Unroll
+            import com.github.blindpirate.junit.extension.unroll.Param
+            import com.github.blindpirate.junit.extension.unroll.where
+            import com.github.blindpirate.junit.extension.unroll.Unroll
 
             class Math {
                 @Unroll
