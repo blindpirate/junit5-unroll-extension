@@ -1,17 +1,18 @@
 package com.github.blindpirate.junit.extension.unroll.unsafe
 
 import com.github.blindpirate.junit.extension.unroll.Param
+import com.github.blindpirate.junit.extension.unroll.Unroll
+import com.github.blindpirate.junit.extension.unroll.where
 import io.github.glytching.junit.extension.system.SystemProperty
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ParameterResolutionException
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import java.util.stream.Collectors
 import java.util.stream.Stream
 
+@Suppress("UNUSED_PARAMETER")
 class UnsafeFunctionsTest {
     @Test
     fun `can retrieve where function`() {
@@ -19,9 +20,11 @@ class UnsafeFunctionsTest {
         verifyParamData(params)
     }
 
-    @ParameterizedTest
-    @CsvSource("TestClass, anotherTestMethod", "TestClass, unknownMethod")
-    fun `give good message when failing to find the where function`(className: String, methodName: String) {
+    @Unroll
+    fun `give good message when failing to find the where function`(className: String, methodName: String, param: Param = where {
+        "TestClass" _ "anotherTestMethod"
+        "TestClass" _ "unknownMethod"
+    }) {
         val exception = assertThrows<ParameterResolutionException> {
             extractArguments(className, methodName)
         }
