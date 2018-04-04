@@ -1,5 +1,8 @@
 package com.github.blindpirate.junit.extension
 
+import com.github.blindpirate.junit.extension.unroll.Param
+import com.github.blindpirate.junit.extension.unroll.Unroll
+import com.github.blindpirate.junit.extension.unroll.where
 import io.github.glytching.junit.extension.folder.TemporaryFolder
 import io.github.glytching.junit.extension.folder.TemporaryFolderExtension
 import org.gradle.testkit.runner.GradleRunner
@@ -7,8 +10,6 @@ import org.gradle.testkit.runner.TaskOutcome
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import java.io.File
 
 @ExtendWith(TemporaryFolderExtension::class)
@@ -20,9 +21,10 @@ class SmokeTest {
         this.temporaryFolder = temporaryFolder
     }
 
-    @ParameterizedTest
-    @CsvSource("5.1.0, 1.2.31")
-    fun `smoke test should succeed with JUnit Platform {0} and kotlin {1}`(jUnitVersion: String, kotlinVersion: String) {
+    @Unroll
+    fun `smoke test should succeed with JUnit Platform {0} and kotlin {1}`(jUnitVersion: String, kotlinVersion: String, p: Param = where {
+        "5.1.0" _ "1.2.31"
+    }) {
         val buildFile = temporaryFolder!!.createFile("build.gradle.kts")
         val rootDir = buildFile.parentFile
         buildFile.writeText("""
@@ -41,7 +43,6 @@ dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testCompile("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testCompile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    testCompile("org.junit.jupiter:junit-jupiter-params:$jUnitVersion")
     testCompile(files("${System.getProperty("unroll.extension.lib.jar.path")}"))
     testCompile("io.github.glytching:junit-extensions:1.1.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")

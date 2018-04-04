@@ -43,7 +43,6 @@ dependencies {
 
     compile("org.junit.jupiter:junit-jupiter-api:$jUnitPlatformVersion")
     compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    testCompile("org.junit.jupiter:junit-jupiter-params:$jUnitPlatformVersion")
     testCompile("io.github.glytching:junit-extensions:1.1.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitPlatformVersion")
     testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")

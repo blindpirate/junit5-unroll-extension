@@ -32,7 +32,11 @@ class UnrollExtension : TestTemplateInvocationContextProvider {
 
 class UnrollTestParameterResolver(private val arguments: Array<out Any>) : ParameterResolver {
     override fun supportsParameter(parameterContext: ParameterContext?, extensionContext: ExtensionContext?): Boolean {
-        return lastParameterIsParam(extensionContext!!)
+        return contextMatch(parameterContext!!, extensionContext!!) && lastParameterIsParam(extensionContext)
+    }
+
+    private fun contextMatch(parameterContext: ParameterContext, extensionContext: ExtensionContext): Boolean {
+        return parameterContext.parameter.declaringExecutable == extensionContext.testMethod.orElse(null)
     }
 
     override fun resolveParameter(parameterContext: ParameterContext?, extensionContext: ExtensionContext?): Any {
