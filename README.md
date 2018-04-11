@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>com.github.blindpirate</groupId>
     <artifactId>junit5-unroll-extension</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-    testCompile 'com.github.blindpirate:junit5-unroll-extension:0.1.1'
+    testCompile 'com.github.blindpirate:junit5-unroll-extension:0.1.2'
 }
 ```
 

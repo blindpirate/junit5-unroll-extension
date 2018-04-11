@@ -100,6 +100,6 @@ configure<PublishExtension> {
     repoName = "com.github.blindpirate"
     groupId = "com.github.blindpirate"
     artifactId = "junit5-unroll-extension"
-    publishVersion = "0.1.1"
+    publishVersion = "0.1.2"
     desc = "JUnit 5 Unroll Extension for Kotlin"
 }
