@@ -8,9 +8,10 @@
 JUnit 5 Unroll Extension is a JUnit 5 extension which supports parameterized tests in kotlin. TL;DR:
 
 ```
-import com.github.blindpirate.junit.extension.Param
-import com.github.blindpirate.junit.extension.Unroll
-import com.github.blindpirate.junit.extension.where
+import com.github.blindpirate.junit.extension.unroll.Param
+import com.github.blindpirate.junit.extension.unroll.Unroll
+import com.github.blindpirate.junit.extension.unroll.where
+import java.lang.Math
 
 class Math {
     @Unroll
